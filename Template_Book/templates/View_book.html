@@ -57,10 +57,10 @@
 
     </table><br><br>
     
-    <form  action="/add_author" method="POST">
+    <form  action="/add_author/{{ contex.id }}" method="POST">
       {% csrf_token %}
 
-      <select class=" ml-3" name="author" id="book">
+      <select class=" ml-3" name="author" id="author">
 
           {% for data in contex_author %}
           <option value="{{ data.id }}">{{ data.first_name }} {{ data.last_name }}</option> 

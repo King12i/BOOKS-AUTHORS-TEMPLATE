@@ -102,7 +102,7 @@ def add_Book(request, pk):
 def add_Author(request, pk):
     
     author = request.POST['author']
-    add_some_author = Authors.object.get(id= author)
+    add_some_author = Authors.objects.get(id= author)
     some_book = Books.objects.get(id=pk)
     seved_author = some_book.publishers.add(add_some_author)
 
