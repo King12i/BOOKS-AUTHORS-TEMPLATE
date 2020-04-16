@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+      <script src="{% static 'js/script.js' %}"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" >BOOKS/AUTHORS WITH TEMPLATES</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link "  href="/">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index">ADD BOOKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/index_one">ADD AUTHORS</a>
+              </li>
+           
+          </ul>
+        </div>
+      </nav>
+
+    <table class="table table-hover" width="400">
+        <tr>
+            <td><b> {{ contex.title }} </b></td>
+        </tr>
+        <tr>
+            <td>ID: </td>
+            <td>{{ contex.id }}</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>{{ contex.description }}</td>
+        </tr>
+
+        <tr>
+          <td width="150">Books:
+               {% for  authors in added_author %}
+ 
+               <ul><li>{{ authors.first_name }} {{ authors.first_name }}</li></ul>
+             
+               {% endfor %}
+          </td>  
+                  
+         </tr>
+
+    </table><br><br>
+    
+    <form  action="/add_author" method="POST">
+      {% csrf_token %}
+
+      <select class=" ml-3" name="author" id="book">
+
+          {% for data in contex_author %}
+          <option value="{{ data.id }}">{{ data.first_name }} {{ data.last_name }}</option> 
+          {% endfor  %}
+
+      </select>
+      
+      <input type="submit" value="Add"></td>
+  </form>
+      
+</body>
+</html>

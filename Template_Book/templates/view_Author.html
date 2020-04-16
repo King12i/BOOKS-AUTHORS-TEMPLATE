@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+      <script src="{% static 'js/script.js' %}"></script>
+    <title>view Athor</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" >BOOKS/AUTHORS WITH TEMPLATES</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link "  href="/">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index">ADD BOOKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/index_one">ADD AUTHORS</a>
+              </li>
+           
+          </ul>
+        </div>
+      </nav>
+
+    <table class="table table-hover ml-3" width="400">
+        <tr>
+            <td><b> {{ contex_author.first_name }}  </b></td>
+            <td><b>  {{ contex_author.last_name }} </b></td>
+        </tr>
+        <tr>
+            <td>ID: </td>
+            <td>{{ contex_author.id }}</td>
+        </tr>
+        <tr>
+            <td>Notes:</td>
+            <td>{{ contex_author.notes }}</td>
+        </tr><br><br>
+
+          
+        <tr>
+         <td width="150">Books:
+              {% for  books in book_added %}
+
+              <ul><li>{{ books.title }}</li></ul>
+            
+              {% endfor %}
+         </td>  
+                 
+        </tr>
+        
+    </table>
+    <div class="form-group "></div>
+         <form  action="/add_book/{{ contex_author.id }}" method="POST">
+            {% csrf_token %}
+            
+            <select class=" ml-3" name="book" id="book">
+                
+                {% for data in contex %}
+                <option value="{{ data.id }}">{{ data.title }}</option> 
+                {% endfor  %}
+
+            </select>
+            
+            <input type="submit" value="Add"></td>
+        </form>
+
+  </form>
+      
+</body>
+</html>

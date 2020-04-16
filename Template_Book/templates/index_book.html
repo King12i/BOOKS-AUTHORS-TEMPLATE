@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book and Author</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+      <script src="{% static 'js/script.js' %}"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" >BOOKS/AUTHORS WITH TEMPLATES</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link "  href="/">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index">ADD BOOKS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/index_one">ADD AUTHORS</a>
+              </li>
+           
+          </ul>
+        </div>
+      </nav>
+      
+<div class="container center">
+    <h1>This is the form of Books</h1>
+        
+            <form action="/create_Book" method="POST" id="create_Book">
+                {% csrf_token %}
+            <div class="form-group ">
+                <label for="title"> Title: </label>
+                <input type="text"  class="form-control" name="title" id="title" placeholder="Title" required>
+            </div>
+            <div class="form-group ">
+                <label for="description">Description:</label>
+                <textarea class="form-control" placeholder="Description:" name="description" id="description" required></textarea>
+            </div>
+
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save">
+            
+            </form><br>
+
+    <table class="table table-bordered table-hover" >
+        <thead class="thead-light" >
+        <th  scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Options</th>
+        <!--<th scope="col">Options</th>
+        <th scope="col">Options</th>-->
+    </thead>
+        {% for data in contex %}
+        <tr>
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.title }}</td>
+            <td><a class="btn btn-primary btn-lg btn-block active" role="button" aria-pressed="true" href="/show/{{ data.id }}">View</a></td>
+               
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
